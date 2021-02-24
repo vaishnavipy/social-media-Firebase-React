@@ -1,38 +1,220 @@
-.App {
+body{
+
+ background-color: #F2EFEF;
+}
+
+/*--------------NAVBAR----------*/
+
+.navbar{
+background-color: white;
+  border-bottom: 1px solid grey;
+  box-shadow: 4px 4px 8px grey;
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+padding: 0.5em 1em;
+height:60px;
+}
+img{
+  width: 50px;
+  height: 50px;
+  
+}
+.logo{
+  height: 100%;
+  width: auto;
+  display: flex;
+  align-content: center;
+  
+}
+.logo>h1{
+  padding: 0 0.5em;
+  align-self: center;
+  margin: 0;
+  font-size: 1.8rem;
+  color:#0A7BFF;
+}
+
+.logins{
+ 
+  align-self: center;
+}
+.logins>a{
+padding: 0 1em;
+  text-decoration: none;
+  
+cursor: pointer;
+color:#0A7BFF;
+font-weight: 700;
+}
+
+
+/*--------------SIGNUP----------*/
+.container{
+ width: 80vw;
+ margin: 1em auto;
+ 
+
+}
+.form-txt{
   text-align: center;
+  font-size: 2rem;
+  color:#0A7BFF;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+form{
+  
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  width: 100%;
+  max-width: 500px;
+  margin: auto;
+}
+form input{
+  margin-top: 1em;
+  border:none;
+  outline: none;
+  padding: 1em;
+  font-size: 1rem;
+  background-color: white;
+  border-bottom: 1px solid grey;
+}
+.btn{
+  align-self: center;
+  margin: 1em;
+  
+}
+form p{
+  margin: 0.5em 0;
+  text-align: center;
+}
+.error{
+  color: red;
+  text-align: left;
+  margin: 0;
+  padding: 0.5em 1em;
+  font-size: 0.9rem;
+}
+/*--------------HOME----------*/
+.home-container{
+  width: 90vw;
+  max-width:1000px ;
+  margin: 1em auto;
+  
+
+  display: grid;
+  grid-template-columns: 1fr 25%;
+  gap:15px;
+}
+@media (max-width:800px){
+ .home-container{
+   grid-template-columns: 1fr;
+ }
 }
 
-.App-link {
-  color: #61dafb;
+
+/*--------------POSTS ----------*/
+.posts-container{
+  background-color:blue;
+}
+/*--------------PROFIELCARD----------*/
+.profile-card{
+ background-color: #FFFFFF;
+ padding: 1em;
+ border-radius: 10px;
+  text-align: center;
+  border:1px solid white;
+  box-shadow: 0 0 5px grey;
+}
+.profile-pic{
+ margin: auto;
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  border:1px solid grey;
+}
+.person-img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+
+}
+.edit-pic{
+  width: 100px;
+  margin: auto;
+  cursor: pointer;
+  
+  text-align: right;
+}
+.edit-profile{
+  text-align: right;
+  cursor: pointer;
+}
+@media (max-width:800px){
+  .profile-card{
+    display: none;
+  }
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/*--------------CREATE A POST----------*/
+.create-post{
+  box-shadow: 0 0 5px grey;
+  border-radius: 5px;
+  background-color: white;
+ 
+  padding: 1em;
+  display:grid;
+  grid-template-rows: auto 1fr auto auto;
+}
+.txt-area{
+  width: 100%;
+  outline: none;
+  border: none;
+}
+.caption-upload-flex{
+  display: flex;
+  justify-content: space-between;
+
+}
+.icons{
+  font-size: 1.5rem;
+  color: #0A7BFF;
+  cursor: pointer;
+}
+.post-img-display{
+  height: 80px;
+  width: 80px;
+  position: relative;
+ 
+}
+.post-img-display img{
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  
+}
+.post-img-display img:hover+.remove-img{
+  display: inline;
+}
+.blur::after{
+  content: "";
+  position: absolute;
+  z-index: -1;
+  background:rgba(0,0,0,0.5);
+  top:0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+}
+.remove-img{
+  color: red;
+  font-weight: 900;
+  position: absolute;
+  cursor: pointer;
+  right:10%;
+  display: none;
+}
+.remove-img:hover{
+  display: inline;
 }
