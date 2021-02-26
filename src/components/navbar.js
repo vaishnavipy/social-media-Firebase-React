@@ -26,7 +26,12 @@ function Navbar(){
     return( 
     <div className="navbar">
         <div className="logo"><img src={logo} /><h1>React Social</h1></div>
-        {location.pathname == "/home" ? <div className="logins"> <a href="/login" onClick={handleSignOut}>Sign Out</a></div> 
+        {location.pathname !== "/" && location.pathname !== "/login" ? 
+        <div className="logins"> 
+            <a href="/profile" >Profile</a>
+            <a href="/home" >Home</a>
+            <a href="/login" onClick={handleSignOut}>Sign Out</a>
+        </div> 
         : 
          <div className="logins"><a href="/login">Login</a><a href="/">Sign-Up</a></div>}
 

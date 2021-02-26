@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import {IoMdCamera} from "react-icons/io"
 import {HiUpload} from "react-icons/hi"
 import {database,storage} from "../firebase"
@@ -28,23 +28,74 @@ function CreatePost(){
         setPostImg({file:"",url:""})
     }
 
-    function handleUpload(){
-        if(input.caption || postImg.file){
 
-            var postRef=database.ref("posts").push()
-            
+    function handleUpload(){
+        var postRef=database.ref("posts").push();
+
+
+        if(postImg.file){
+
+            var storageRef =storage.ref();
+
+           var uploadTask= storageRef.child(`images/${postRef.key}.jpg`).put(postImg.file)
+
+           uploadTask.on("state_changed",(snapshot) => {},(err)=>console.log(err),()=>{
+
+            storageRef.child(`images/${postRef.key}.jpg`).getDownloadURL().then((url)=>{
+
+                postRef.set({
+                    caption: input.caption,
+                    postPhoto : url,
+                    username :  currentUser.username,
+                    likeCount : 0,
+                    commentCount : 0,
+                    postID : postRef.key,
+                    uid : currentUser.uid,
+                    userpic : currentUser.userpic
+                })
+
+
+            }).catch(err => console.log(err))
+
+            setInput({caption:""})
+            setPostImg({file:"",url:""})
+           })
+        
+
+        }else if(input.caption){
+
             postRef.set({
                 caption: input.caption,
                 postPhoto : postImg.file,
                 username :  currentUser.username,
-                likes : 0,
-                comments : 0,
-                postID : postRef.key
+                likeCount : 0,
+                commentCount : 0,
+                postID : postRef.key,
+                uid : currentUser.uid,
+                userpic : currentUser.userpic
             })
 
+            setInput({caption:""})
+            setPostImg({file:"",url:""})
 
         }
+
+        //Now add the postID to the users list, 
+         database.ref("users/"+currentUser.uid+"/posts").once("value",(snapshot)=>{
+             if(snapshot.exists()){
+                database.ref("users/"+currentUser.uid+"/posts").set([...snapshot.val(),postRef.key])
+               
+             }else{
+                 console.log(snapshot.val())
+                 database.ref("users/"+currentUser.uid+"/posts").set([postRef.key])
+
+             }
+         })
+        
+
     }
+
+    
 
 
 
