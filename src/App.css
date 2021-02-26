@@ -423,4 +423,69 @@ hr{
   margin: 0;
   font-size: 0.8rem;
 }
+  /*--------------ACCORDION----------*/
+
+  .tabs{
+    width: 100%;
+  margin: 1em 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(150px,1fr));
+    box-shadow: 0 0 5px gray;
+    border-radius: 5px;
+   cursor: pointer;
+  }
+  .tab{
+    font-weight: 700;
+    text-align: center;
+   color: #0A7BFF;
+    padding: 1em;
+   
+  }
+  .active{
+    border-bottom: 4px solid #0A7BFF;
+  }
+  .accordion-content-div{
+  
+    width: 100%;
+    
+  }
+.accordion-content{
+  width: 100%;
+  margin: 1em 0;
+
+}
+
+
+#followers{
+  display: none;
+  grid-template-columns: repeat(auto-fill,minmax(100px,1fr));
+   gap:80px;
+}
+#following{
+  display: none;
+  grid-template-columns: repeat(auto-fill,minmax(100px,1fr));
+  gap:80px;
+}
+.followers-div{
+  display: flex;
+  flex-direction: column;
+ justify-content: center;
+ align-content: center;
+ cursor: pointer;
+}
+.followers-div h4{
+  align-self: center;
+}
+.followers-div div{
+
+ border-radius: 50%;
+ 
+}
+.followers-div img{
+  border-radius: 50%;
+height: 100%;
+width: 100%;
+object-fit: cover;
+background-color: #0A7BFF;
+}
 
